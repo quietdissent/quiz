@@ -197,6 +197,44 @@ h1 {
   font-style: italic;
 }
 
+.optional-response {
+  margin-top: 12px;
+  display: none;
+}
+
+.optional-response.active {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+.optional-response-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sec);
+  margin-bottom: 8px;
+}
+
+.optional-response textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.optional-response textarea:focus {
+  outline: none;
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(122, 158, 126, 0.12);
+}
+
 /* Navigation */
 .nav-row {
   display: flex;
@@ -454,6 +492,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>We have 24/7 coverage and never miss a call.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Most go to voicemail. We call back next business day.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>They usually hang up without leaving a message.<span class="option-insight">80% of callers who reach voicemail do exactly this.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse0">
+        <label class="optional-response-label" for="optionalText0">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText0" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <div></div>
@@ -469,6 +512,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Within 5 minutes.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Within a few hours.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>24–48 hours or longer.<span class="option-insight">51% of leads are never contacted at all in this window.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse1">
+        <label class="optional-response-label" for="optionalText1">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText1" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <button class="btn btn-back" onclick="prevQuestion(1)">← Back</button>
@@ -484,6 +532,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Non-existent. Our business wraps up by 5.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Steady, but we don't answer after hours.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Peaking — especially in home services or healthcare.<span class="option-insight">This is when most homeowners are off work and calling for quotes.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse2">
+        <label class="optional-response-label" for="optionalText2">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText2" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <button class="btn btn-back" onclick="prevQuestion(2)">← Back</button>
@@ -499,6 +552,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Less than 30 minutes a day.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>1–2 hours a day.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Over 90 minutes a day.<span class="option-insight">The average SMB loses 96 minutes daily to these tasks.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse3">
+        <label class="optional-response-label" for="optionalText3">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText3" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <button class="btn btn-back" onclick="prevQuestion(3)">← Back</button>
@@ -514,6 +572,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Simple. Anyone on the team can follow them.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Documented, but they still require constant human oversight.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>It's a messy reality that only an experienced office manager truly understands.<span class="option-insight">This is where generic AI tools fail — and where operations-first consulting wins.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse4">
+        <label class="optional-response-label" for="optionalText4">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText4" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <button class="btn btn-back" onclick="prevQuestion(4)">← Back</button>
@@ -529,6 +592,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>We haven't tried them.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>We use them for basic tasks like writing emails or social posts.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>We tried to build something but it felt "stuck" or didn't integrate with our systems.<span class="option-insight">You're not alone — 72% of non-adopters cite lack of knowledge as the barrier.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse5">
+        <label class="optional-response-label" for="optionalText5">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText5" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <button class="btn btn-back" onclick="prevQuestion(5)">← Back</button>
@@ -544,6 +612,11 @@ h1 {
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>The cost of the technology.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Security, privacy, or compliance concerns.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>A skills gap — we don't have the time or knowledge to set it up ourselves.<span class="option-insight">This is the #1 barrier for 72% of small businesses.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse6">
+        <label class="optional-response-label" for="optionalText6">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText6" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
         <button class="btn btn-back" onclick="prevQuestion(6)">← Back</button>
@@ -583,23 +656,35 @@ h1 {
 
 <script>
 const answers = [null, null, null, null, null, null, null];
+const optionalNotes = ['', '', '', '', '', '', ''];
 const total = 7;
 
 function selectOption(el) {
   const card = el.closest('.question-card');
-  const qIndex = parseInt(card.dataset.q);
+  const qIndex = parseInt(card.dataset.q, 10);
+
   card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
+
   answers[qIndex] = el.dataset.score;
   document.getElementById('nextBtn' + qIndex).classList.add('enabled');
+
+  const optionalWrap = document.getElementById('optionalResponse' + qIndex);
+  if (answers[qIndex] === 'd') {
+    optionalWrap.classList.add('active');
+  } else {
+    optionalWrap.classList.remove('active');
+  }
 }
 
 function nextQuestion(current) {
   if (!answers[current]) return;
+
   const cards = document.querySelectorAll('.question-card');
   cards[current].classList.remove('active');
   cards[current + 1].classList.add('active');
   updateProgress(current + 2);
+  restoreOptionalField(current + 1);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -608,6 +693,7 @@ function prevQuestion(current) {
   cards[current].classList.remove('active');
   cards[current - 1].classList.add('active');
   updateProgress(current);
+  restoreOptionalField(current - 1);
 }
 
 function updateProgress(qNum) {
@@ -615,16 +701,32 @@ function updateProgress(qNum) {
   document.getElementById('progressFill').style.width = ((qNum / total) * 100) + '%';
 }
 
+function restoreOptionalField(qIndex) {
+  const wrap = document.getElementById('optionalResponse' + qIndex);
+  const text = document.getElementById('optionalText' + qIndex);
+
+  if (answers[qIndex] === 'd') {
+    wrap.classList.add('active');
+  } else {
+    wrap.classList.remove('active');
+  }
+
+  if (text) {
+    text.value = optionalNotes[qIndex] || '';
+  }
+}
+
 function showResults() {
   if (!answers[6]) return;
 
   let counts = { a: 0, b: 0, c: 0 };
-  answers.forEach(a => { if (a) counts[a]++; });
+  answers.forEach(a => {
+    if (a === 'a' || a === 'b' || a === 'c') counts[a]++;
+  });
 
-  let type, badge, badgeClass, title, desc, leak, nextTitle, nextDesc, nextItems;
+  let badge, badgeClass, title, desc, leak, nextTitle, nextDesc, nextItems;
 
   if (counts.a >= counts.b && counts.a >= counts.c) {
-    type = 'efficient';
     badge = 'Efficient Operator';
     badgeClass = 'efficient';
     title = 'You\'re Running a Tight Ship.';
@@ -638,7 +740,6 @@ function showResults() {
       'Find the "last mile" efficiency gains that add up'
     ];
   } else if (counts.c >= counts.b) {
-    type = 'leak';
     badge = 'High-Leak Zone';
     badgeClass = 'leak';
     title = 'You\'re Losing More Than You Think.';
@@ -653,7 +754,6 @@ function showResults() {
       'Get a system that pays for itself in the first month'
     ];
   } else {
-    type = 'stuck';
     badge = 'Stuck Explorer';
     badgeClass = 'stuck';
     title = 'You Know AI Matters. You Just Haven\'t Found the Path.';
@@ -697,16 +797,30 @@ function showResults() {
 
 function resetQuiz() {
   answers.fill(null);
+  optionalNotes.fill('');
+
   document.getElementById('results').classList.remove('active');
   document.getElementById('quiz').style.display = 'block';
+
   document.querySelectorAll('.question-card').forEach((c, i) => {
     c.classList.toggle('active', i === 0);
     c.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   });
+
   document.querySelectorAll('.btn-next').forEach(b => b.classList.remove('enabled'));
+  document.querySelectorAll('.optional-response').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.optional-response textarea').forEach(t => t.value = '');
+
   updateProgress(1);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+document.querySelectorAll('.optional-response textarea').forEach(textarea => {
+  textarea.addEventListener('input', function () {
+    const qIndex = parseInt(this.id.replace('optionalText', ''), 10);
+    optionalNotes[qIndex] = this.value;
+  });
+});
 
 updateProgress(1);
 </script>
