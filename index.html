@@ -377,18 +377,17 @@ h1 {
   display: block;
   text-align: center;
   margin-top: 14px;
-  font-size: 12px;
-  color: var(--border);
+  font-size: 13px;
+  color: var(--text-muted);
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: underline;
   background: none;
   border: none;
   font-family: 'DM Sans', sans-serif;
-  transition: color 0.2s;
 }
+
 .gate-skip:hover {
-  color: var(--text-muted);
-  text-decoration: underline;
+  color: var(--text-sec);
 }
 
 /* Results */
@@ -558,11 +557,10 @@ h1 {
 }
 
 .retake a {
-  font-size: 12px;
-  color: var(--border);
+  font-size: 13px;
+  color: var(--text-muted);
   cursor: pointer;
-  text-decoration: none;
-  transition: color 0.2s;
+  text-decoration: underline;
 }
 
 @keyframes fadeIn {
@@ -774,8 +772,9 @@ h1 {
 
 <script>
 // ─── Config ───────────────────────────────────────────────────────────────────
-const SUPABASE_URL = 'https://qifpdpippnytijfzjdsp.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_tlBptRX48BfeyX17B62EZg_ZePfCxfl';──────────────────────────────────────────────────────────────────────
+// Replace with your Formspree endpoint after creating a form at formspree.io
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// ──────────────────────────────────────────────────────────────────────────────
 
 const answers = [null, null, null, null, null, null, null];
 const optionalNotes = ['', '', '', '', '', '', ''];
@@ -860,14 +859,9 @@ function submitEmail() {
   const profile = computeProfile(counts);
 
   // Fire and forget — silent fail is fine, results are already showing
-  fetch(`${SUPABASE_URL}/rest/v1/quiz_leads`, {
+  fetch(FORMSPREE_ENDPOINT, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_ANON_KEY,
-      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-      'Prefer': 'return=minimal'
-    },
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
       email,
       name: name || '(not provided)',
