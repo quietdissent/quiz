@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Readiness Quiz — Quiet Dissent</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --charcoal: #2A2D2E;
+  --cream: #FAFAF7;
+  --cream-dark: #F0F0EC;
+  --sage: #7A9E7E;
+  --sage-dark: #5C7E60;
+  --sage-light: #E8F0E9;
+  --gold: #C4A265;
+  --gold-light: #FDF8F0;
+  --red-soft: #C45B5B;
+  --red-light: #FDF0F0;
+  --text: #2A2D2E;
+  --text-sec: #5A5D5E;
+  --text-muted: #8A8D8E;
+  --border: #E5E5E0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--charcoal);
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--text-sec);
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+/* Progress */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--sage);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+.progress-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Question card */
+.question-card {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.question-card.active {
+  display: block;
+}
+
+.q-part {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.q-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(18px, 3.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-sec);
+}
+
+.option:hover {
+  border-color: var(--sage);
+  background: var(--sage-light);
+}
+
+.option.selected {
+  border-color: var(--sage);
+  background: var(--sage-light);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.option-letter {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: var(--cream-dark);
+  color: var(--text-muted);
+  transition: all 0.2s;
+  margin-top: 1px;
+}
+
+.option.selected .option-letter {
+  background: var(--sage);
+  color: #fff;
+}
+
+.option-insight {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.optional-response {
+  margin-top: 12px;
+  display: none;
+}
+
+.optional-response.active {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+.optional-response-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sec);
+  margin-bottom: 8px;
+}
+
+.optional-response textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.optional-response textarea:focus {
+  outline: none;
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(122, 158, 126, 0.12);
+}
+
+/* Navigation */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  gap: 12px;
+}
+
+.btn {
+  padding: 12px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-back:hover {
+  border-color: var(--text-muted);
+}
+
+.btn-next {
+  background: var(--sage);
+  color: #fff;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn-next.enabled {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn-next.enabled:hover {
+  background: var(--sage-dark);
+  transform: translateY(-1px);
+}
+
+/* Email Gate */
+#emailGate {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+#emailGate.active {
+  display: block;
+}
+
+.gate-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.gate-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+
+.gate-subtitle {
+  font-size: 15px;
+  color: var(--text-sec);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.gate-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gate-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.gate-input:focus {
+  border-color: var(--sage);
+}
+
+.gate-input::placeholder {
+  color: var(--text-muted);
+}
+
+.gate-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--sage);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.gate-submit:hover {
+  background: var(--sage-dark);
+  transform: translateY(-1px);
+}
+
+.gate-reassurance {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.gate-skip {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.gate-skip:hover {
+  color: var(--text-sec);
+}
+
+/* Results */
+#results {
+  display: none;
+}
+
+#results.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+.result-badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.result-badge.efficient {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+}
+
+.result-badge.stuck {
+  background: var(--gold-light);
+  color: var(--gold);
+}
+
+.result-badge.leak {
+  background: var(--red-light);
+  color: var(--red-soft);
+}
+
+.result-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 4.5vw, 32px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.result-desc {
+  font-size: 15px;
+  color: var(--text-sec);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 480px) {
+  .result-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+
+.stat-value.red {
+  color: var(--red-soft);
+}
+
+.stat-value.sage {
+  color: var(--sage-dark);
+}
+
+.result-next {
+  background: linear-gradient(135deg, var(--cream-dark), rgba(122, 158, 126, 0.08));
+  border: 1px solid rgba(122, 158, 126, 0.2);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.result-next h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--charcoal);
+}
+
+.result-next p {
+  font-size: 14px;
+  color: var(--text-sec);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.result-next ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.result-next li {
+  font-size: 14px;
+  color: var(--text-sec);
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.result-next li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--sage);
+  font-weight: 700;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--sage);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-1px);
+  background: var(--sage-dark);
+}
+
+.retake {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.retake a {
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="brand">
+    <img class="brand-logo" src="./qd-logo.png" alt="Quiet Dissent logo" />
+    <div class="brand-name">Quiet Dissent</div>
+  </div>
+
+  <h1>What's Getting in the Way of Smarter Operations?</h1>
+  <p class="subtitle">7 questions. 2 minutes. Find out where your business may be losing time, leads, and momentum.</p>
+
+  <!-- Quiz -->
+  <div id="quiz">
+    <div class="progress-text"><span id="qNum">1</span> of 7</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- Q1 -->
+    <div class="question-card active" data-q="0">
+      <div class="q-part">Part 1 · Revenue Leak</div>
+      <div class="q-text">What happens when a potential customer calls your office while staff is busy or it's after hours?</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>We have 24/7 coverage and never miss a call.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Most go to voicemail. We call back next business day.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>They usually hang up without leaving a message.<span class="option-insight">80% of callers who reach voicemail do exactly this.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse0">
+        <label class="optional-response-label" for="optionalText0">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText0" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <div></div>
+        <button class="btn btn-next" id="nextBtn0" onclick="nextQuestion(0)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card" data-q="1">
+      <div class="q-part">Part 1 · Revenue Leak</div>
+      <div class="q-text">How quickly does your team typically respond to a new web lead or inquiry?</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Within 5 minutes.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Within a few hours.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>24–48 hours or longer.<span class="option-insight">51% of leads are never contacted at all in this window.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse1">
+        <label class="optional-response-label" for="optionalText1">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText1" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="prevQuestion(1)">← Back</button>
+        <button class="btn btn-next" id="nextBtn1" onclick="nextQuestion(1)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card" data-q="2">
+      <div class="q-part">Part 1 · Revenue Leak</div>
+      <div class="q-text">Between 5:00 PM and 8:00 PM, your phone volume is likely:</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Non-existent. Our business wraps up by 5.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Steady, but we don't answer after hours.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Peaking — especially in home services or healthcare.<span class="option-insight">This is when most homeowners are off work and calling for quotes.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse2">
+        <label class="optional-response-label" for="optionalText2">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText2" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="prevQuestion(2)">← Back</button>
+        <button class="btn btn-next" id="nextBtn2" onclick="nextQuestion(2)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card" data-q="3">
+      <div class="q-part">Part 2 · Operational Bottlenecks</div>
+      <div class="q-text">How much time does your admin staff spend daily on repetitive tasks like status updates, scheduling, and data entry?</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Less than 30 minutes a day.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>1–2 hours a day.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Over 90 minutes a day.<span class="option-insight">The average SMB loses 96 minutes daily to these tasks.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse3">
+        <label class="optional-response-label" for="optionalText3">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText3" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="prevQuestion(3)">← Back</button>
+        <button class="btn btn-next" id="nextBtn3" onclick="nextQuestion(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card" data-q="4">
+      <div class="q-part">Part 2 · Operational Bottlenecks</div>
+      <div class="q-text">When it comes to scheduling, how would you describe your "unwritten rules" — like which provider takes emergencies or no-show buffers?</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Simple. Anyone on the team can follow them.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Documented, but they still require constant human oversight.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>It's a messy reality that only an experienced office manager truly understands.<span class="option-insight">This is where generic AI tools fail — and where operations-first consulting wins.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse4">
+        <label class="optional-response-label" for="optionalText4">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText4" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="prevQuestion(4)">← Back</button>
+        <button class="btn btn-next" id="nextBtn4" onclick="nextQuestion(4)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card" data-q="5">
+      <div class="q-part">Part 3 · The Explorer Mindset</div>
+      <div class="q-text">What has been your experience with tools like ChatGPT or Zapier so far?</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>We haven't tried them.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>We use them for basic tasks like writing emails or social posts.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>We tried to build something but it felt "stuck" or didn't integrate with our systems.<span class="option-insight">You're not alone — 72% of non-adopters cite lack of knowledge as the barrier.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse5">
+        <label class="optional-response-label" for="optionalText5">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText5" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="prevQuestion(5)">← Back</button>
+        <button class="btn btn-next" id="nextBtn5" onclick="nextQuestion(5)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-card" data-q="6">
+      <div class="q-part">Part 3 · The Explorer Mindset</div>
+      <div class="q-text">What is your primary concern about implementing AI in your business?</div>
+      <div class="options">
+        <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>The cost of the technology.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Security, privacy, or compliance concerns.</div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>A skills gap — we don't have the time or knowledge to set it up ourselves.<span class="option-insight">This is the #1 barrier for 72% of small businesses.</span></div></div>
+        <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
+      </div>
+      <div class="optional-response" id="optionalResponse6">
+        <label class="optional-response-label" for="optionalText6">But it has inspired me to mention or ask</label>
+        <textarea id="optionalText6" placeholder="Optional"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="prevQuestion(6)">← Back</button>
+        <button class="btn btn-next" id="nextBtn6" onclick="showEmailGate()">See My Results →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Gate -->
+  <div id="emailGate">
+    <div class="gate-eyebrow">One last step</div>
+    <div class="gate-title">Where should we send your results?</div>
+    <div class="gate-subtitle">We'll include your score, your estimated revenue leak, and a short note on what it means for your business.</div>
+    <div class="gate-fields">
+      <input class="gate-input" type="email" id="gateEmail" placeholder="your@email.com" autocomplete="email" />
+      <input class="gate-input" type="text" id="gateName" placeholder="First name (optional)" autocomplete="given-name" />
+    </div>
+    <button class="gate-submit" onclick="submitEmail()">Get my results →</button>
+    <p class="gate-reassurance">No spam. One email with your report.</p>
+    <button class="gate-skip" onclick="skipEmail()">Skip, just show my results</button>
+  </div>
+
+  <!-- Results -->
+  <div id="results">
+    <div id="resultBadge" class="result-badge"></div>
+    <h1 class="result-title" id="resultTitle"></h1>
+    <p class="result-desc" id="resultDesc"></p>
+
+    <div class="result-stats">
+      <div class="stat-card">
+        <div class="stat-label">Your Score</div>
+        <div class="stat-value" id="resultScore"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Estimated Monthly Leak</div>
+        <div class="stat-value red" id="resultLeak"></div>
+      </div>
+    </div>
+
+    <div class="result-next">
+      <h3 id="resultNextTitle"></h3>
+      <p id="resultNextDesc"></p>
+      <ul id="resultNextList"></ul>
+      <a class="cta-btn" href="https://quietdissent.com/#contact" target="_blank" rel="noopener noreferrer">Schedule Your Assessment →</a>
+    </div>
+
+    <div class="retake"><a onclick="resetQuiz()">↻ Retake the quiz</a></div>
+  </div>
+
+</div>
+
+<script>
+// ─── Config ───────────────────────────────────────────────────────────────────
+// Replace with your Formspree endpoint after creating a form at formspree.io
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// ──────────────────────────────────────────────────────────────────────────────
+
+const answers = [null, null, null, null, null, null, null];
+const optionalNotes = ['', '', '', '', '', '', ''];
+const total = 7;
+
+function selectOption(el) {
+  const card = el.closest('.question-card');
+  const qIndex = parseInt(card.dataset.q, 10);
+
+  card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+
+  answers[qIndex] = el.dataset.score;
+  document.getElementById('nextBtn' + qIndex).classList.add('enabled');
+
+  const optionalWrap = document.getElementById('optionalResponse' + qIndex);
+  if (answers[qIndex] === 'd') {
+    optionalWrap.classList.add('active');
+  } else {
+    optionalWrap.classList.remove('active');
+  }
+}
+
+function nextQuestion(current) {
+  if (!answers[current]) return;
+  const cards = document.querySelectorAll('.question-card');
+  cards[current].classList.remove('active');
+  cards[current + 1].classList.add('active');
+  updateProgress(current + 2);
+  restoreOptionalField(current + 1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prevQuestion(current) {
+  const cards = document.querySelectorAll('.question-card');
+  cards[current].classList.remove('active');
+  cards[current - 1].classList.add('active');
+  updateProgress(current);
+  restoreOptionalField(current - 1);
+}
+
+function updateProgress(qNum) {
+  document.getElementById('qNum').textContent = qNum;
+  document.getElementById('progressFill').style.width = ((qNum / total) * 100) + '%';
+}
+
+function restoreOptionalField(qIndex) {
+  const wrap = document.getElementById('optionalResponse' + qIndex);
+  const text = document.getElementById('optionalText' + qIndex);
+  if (answers[qIndex] === 'd') {
+    wrap.classList.add('active');
+  } else {
+    wrap.classList.remove('active');
+  }
+  if (text) text.value = optionalNotes[qIndex] || '';
+}
+
+function showEmailGate() {
+  if (!answers[6]) return;
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('emailGate').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitEmail() {
+  const email = document.getElementById('gateEmail').value.trim();
+  const name = document.getElementById('gateName').value.trim();
+  const emailInput = document.getElementById('gateEmail');
+
+  if (!email || !email.includes('@')) {
+    emailInput.style.borderColor = 'var(--red-soft)';
+    emailInput.focus();
+    return;
+  }
+
+  // Show results immediately — don't make them wait on the network
+  renderResults();
+
+  // Collect optional notes for submission
+  const notes = optionalNotes.map((note, i) => note ? `Q${i + 1}: ${note}` : null).filter(Boolean).join(' | ');
+  const counts = computeCounts();
+  const profile = computeProfile(counts);
+
+  // Fire and forget — silent fail is fine, results are already showing
+  fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      email,
+      name: name || '(not provided)',
+      profile: profile.badge,
+      score_a: counts.a,
+      score_b: counts.b,
+      score_c: counts.c,
+      estimated_leak: profile.leak,
+      answers: answers.join(', '),
+      notes: notes || '(none)'
+    })
+  }).catch(() => {});
+}
+
+function skipEmail() {
+  renderResults();
+}
+
+function computeCounts() {
+  const counts = { a: 0, b: 0, c: 0 };
+  answers.forEach(a => {
+    if (a === 'a' || a === 'b' || a === 'c') counts[a]++;
+  });
+  return counts;
+}
+
+function computeProfile(counts) {
+  if (counts.a >= counts.b && counts.a >= counts.c) {
+    return {
+      badge: 'Efficient Operator',
+      badgeClass: 'efficient',
+      title: "You're Running a Tight Ship.",
+      desc: "Your systems are solid. You answer calls, respond to leads quickly, and have processes that work. AI for you isn't about fixing what's broken — it's about fine-tuning what already works and finding incremental gains in profitability. The question is whether there's a next level you haven't seen yet.",
+      leak: '$500 – $2,000',
+      nextTitle: 'Your opportunity is optimization.',
+      nextDesc: 'Even efficient operations have blind spots. Our assessment finds the 5-10% gains that compound into real margin.',
+      nextItems: [
+        "Identify automation opportunities your team hasn't considered",
+        'Benchmark your response times against conversion data',
+        'Find the "last mile" efficiency gains that add up'
+      ]
+    };
+  } else if (counts.c >= counts.b) {
+    return {
+      badge: 'High-Leak Zone',
+      badgeClass: 'leak',
+      title: "You're Losing More Than You Think.",
+      desc: "Your business is likely in the group losing $120,000+ annually to missed calls and slow lead responses. The good news: this is the most fixable problem in your business. A single missed lead costs an average of $1,200 in home services — and right now, most of those leads are calling your competitors instead.",
+      leak: '$5,000 – $10,000+',
+      nextTitle: 'You need a done-for-you implementation.',
+      nextDesc: "You don't need more software to learn. You need someone who understands your operations to build the system for you.",
+      nextItems: [
+        'Map your exact revenue leak with real call data',
+        'Quantify your specific after-hours and missed-call losses',
+        'Identify the highest-ROI quick win — usually live within 2 weeks',
+        'Get a system that pays for itself in the first month'
+      ]
+    };
+  } else {
+    return {
+      badge: 'Stuck Explorer',
+      badgeClass: 'stuck',
+      title: "You Know AI Matters. You Just Haven't Found the Path.",
+      desc: "You're in the majority — 51% of small businesses are in exactly this position. You've tried a tool or two, maybe ChatGPT for emails, maybe looked at automation. But nothing is connected, nothing is consistent, and nobody is steering the strategy. The problem isn't the technology. It's that nobody has shown you the full picture.",
+      leak: '$2,000 – $5,000',
+      nextTitle: 'You need a strategy before another tool.',
+      nextDesc: 'The $500 Diagnostic Assessment is designed specifically for businesses in your position.',
+      nextItems: [
+        'Map the "unwritten rules" a generic bot would miss',
+        'Quantify your specific revenue leak — not industry averages',
+        'Identify one quick-win project to show ROI within weeks',
+        'Get a roadmap that connects your tools into a system'
+      ]
+    };
+  }
+}
+
+function renderResults() {
+  document.getElementById('emailGate').classList.remove('active');
+  document.getElementById('quiz').style.display = 'none';
+
+  const counts = computeCounts();
+  const profile = computeProfile(counts);
+
+  const resultsEl = document.getElementById('results');
+  resultsEl.classList.add('active');
+
+  const badgeEl = document.getElementById('resultBadge');
+  badgeEl.textContent = profile.badge;
+  badgeEl.className = 'result-badge ' + profile.badgeClass;
+
+  document.getElementById('resultTitle').textContent = profile.title;
+  document.getElementById('resultDesc').textContent = profile.desc;
+  document.getElementById('resultScore').textContent = counts.a + ' A  ·  ' + counts.b + ' B  ·  ' + counts.c + ' C';
+  document.getElementById('resultLeak').textContent = profile.leak;
+  document.getElementById('resultNextTitle').textContent = profile.nextTitle;
+  document.getElementById('resultNextDesc').textContent = profile.nextDesc;
+
+  const list = document.getElementById('resultNextList');
+  list.innerHTML = '';
+  profile.nextItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    list.appendChild(li);
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  answers.fill(null);
+  optionalNotes.fill('');
+
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('emailGate').classList.remove('active');
+  document.getElementById('quiz').style.display = 'block';
+
+  document.querySelectorAll('.question-card').forEach((c, i) => {
+    c.classList.toggle('active', i === 0);
+    c.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  });
+
+  document.querySelectorAll('.btn-next').forEach(b => b.classList.remove('enabled'));
+  document.querySelectorAll('.optional-response').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.optional-response textarea').forEach(t => t.value = '');
+  document.getElementById('gateEmail').value = '';
+  document.getElementById('gateName').value = '';
+  document.getElementById('gateEmail').style.borderColor = '';
+
+  updateProgress(1);
+  document.getElementById('progressFill').style.width = '0%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.optional-response textarea').forEach(textarea => {
+  textarea.addEventListener('input', function () {
+    const qIndex = parseInt(this.id.replace('optionalText', ''), 10);
+    optionalNotes[qIndex] = this.value;
+  });
+});
+
+updateProgress(1);
+</script>
+
+</body>
+</html>
