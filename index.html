@@ -772,7 +772,7 @@ h1 {
 
 <script>
 // ─── Config ───────────────────────────────────────────────────────────────────
-// Replace with your Formspree endpoint after creating a form at formspree.io
+
 const SUPABASE_URL = 'https://qifpdpippnytijfzjdsp.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_tlBptRX48BfeyX17B62ZePfCxfl';
 // ──────────────────────────────────────────────────────────────────────────────
@@ -860,9 +860,9 @@ function submitEmail() {
   const profile = computeProfile(counts);
 
   // Fire and forget — silent fail is fine, results are already showing
-  fetch(FORMSPREE_ENDPOINT, {
+  fetch(SUPABASE_URL + '/rest/v1/quiz_leads', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Prefer': 'return=minimal' },
     body: JSON.stringify({
       email,
       name: name || '(not provided)',
