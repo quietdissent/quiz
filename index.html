@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AI Readiness Quiz — Quiet Dissent</title>
+<title>AI Readiness Quiz â€” Quiet Dissent</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -282,6 +282,114 @@ h1 {
   transform: translateY(-1px);
 }
 
+/* Email Gate */
+#emailGate {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+#emailGate.active {
+  display: block;
+}
+
+.gate-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.gate-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+
+.gate-subtitle {
+  font-size: 15px;
+  color: var(--text-sec);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.gate-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gate-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.gate-input:focus {
+  border-color: var(--sage);
+}
+
+.gate-input::placeholder {
+  color: var(--text-muted);
+}
+
+.gate-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--sage);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.gate-submit:hover {
+  background: var(--sage-dark);
+  transform: translateY(-1px);
+}
+
+.gate-reassurance {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.gate-skip {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.gate-skip:hover {
+  color: var(--text-sec);
+}
+
 /* Results */
 #results {
   display: none;
@@ -416,7 +524,7 @@ h1 {
 }
 
 .result-next li::before {
-  content: '✓';
+  content: 'âœ“';
   position: absolute;
   left: 0;
   color: var(--sage);
@@ -455,101 +563,9 @@ h1 {
   text-decoration: underline;
 }
 
-
-/* Email Gate */
-#emailGate {
-  display: none;
-  animation: fadeIn 0.4s ease;
-}
-#emailGate.active { display: block; }
-
-.gate-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--sage-dark);
-  margin-bottom: 12px;
-  font-weight: 500;
-}
-.gate-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(22px, 4vw, 28px);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--charcoal);
-  margin-bottom: 10px;
-}
-.gate-subtitle {
-  font-size: 15px;
-  color: var(--text-sec);
-  line-height: 1.6;
-  margin-bottom: 28px;
-}
-.gate-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.gate-input {
-  width: 100%;
-  padding: 14px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  color: var(--text);
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.gate-input:focus { border-color: var(--sage); }
-.gate-input::placeholder { color: var(--text-muted); }
-.gate-submit {
-  width: 100%;
-  padding: 15px;
-  background: var(--sage);
-  color: #fff;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-.gate-submit:hover { background: var(--sage-dark); transform: translateY(-1px); }
-.gate-reassurance {
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 10px;
-  line-height: 1.5;
-}
-.gate-skip {
-  display: block;
-  text-align: center;
-  margin-top: 14px;
-  font-size: 12px;
-  color: var(--border);
-  cursor: pointer;
-  text-decoration: none;
-  background: none;
-  border: none;
-  font-family: 'DM Sans', sans-serif;
-  transition: color 0.2s;
-}
-.gate-skip:hover { color: var(--text-muted); text-decoration: underline; }
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -562,7 +578,7 @@ h1 {
     <div class="brand-name">Quiet Dissent</div>
   </div>
 
-  <h1>What’s Getting in the Way of Smarter Operations?</h1>
+  <h1>What's Getting in the Way of Smarter Operations?</h1>
   <p class="subtitle">7 questions. 2 minutes. Find out where your business may be losing time, leads, and momentum.</p>
 
   <!-- Quiz -->
@@ -572,7 +588,7 @@ h1 {
 
     <!-- Q1 -->
     <div class="question-card active" data-q="0">
-      <div class="q-part">Part 1 · Revenue Leak</div>
+      <div class="q-part">Part 1 Â· Revenue Leak</div>
       <div class="q-text">What happens when a potential customer calls your office while staff is busy or it's after hours?</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>We have 24/7 coverage and never miss a call.</div></div>
@@ -586,18 +602,18 @@ h1 {
       </div>
       <div class="nav-row">
         <div></div>
-        <button class="btn btn-next" id="nextBtn0" onclick="nextQuestion(0)">Next →</button>
+        <button class="btn btn-next" id="nextBtn0" onclick="nextQuestion(0)">Next â†’</button>
       </div>
     </div>
 
     <!-- Q2 -->
     <div class="question-card" data-q="1">
-      <div class="q-part">Part 1 · Revenue Leak</div>
+      <div class="q-part">Part 1 Â· Revenue Leak</div>
       <div class="q-text">How quickly does your team typically respond to a new web lead or inquiry?</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Within 5 minutes.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Within a few hours.</div></div>
-        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>24–48 hours or longer.<span class="option-insight">51% of leads are never contacted at all in this window.</span></div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>24â€“48 hours or longer.<span class="option-insight">51% of leads are never contacted at all in this window.</span></div></div>
         <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
       </div>
       <div class="optional-response" id="optionalResponse1">
@@ -605,19 +621,19 @@ h1 {
         <textarea id="optionalText1" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-back" onclick="prevQuestion(1)">← Back</button>
-        <button class="btn btn-next" id="nextBtn1" onclick="nextQuestion(1)">Next →</button>
+        <button class="btn btn-back" onclick="prevQuestion(1)">â† Back</button>
+        <button class="btn btn-next" id="nextBtn1" onclick="nextQuestion(1)">Next â†’</button>
       </div>
     </div>
 
     <!-- Q3 -->
     <div class="question-card" data-q="2">
-      <div class="q-part">Part 1 · Revenue Leak</div>
+      <div class="q-part">Part 1 Â· Revenue Leak</div>
       <div class="q-text">Between 5:00 PM and 8:00 PM, your phone volume is likely:</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Non-existent. Our business wraps up by 5.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Steady, but we don't answer after hours.</div></div>
-        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Peaking — especially in home services or healthcare.<span class="option-insight">This is when most homeowners are off work and calling for quotes.</span></div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Peaking â€” especially in home services or healthcare.<span class="option-insight">This is when most homeowners are off work and calling for quotes.</span></div></div>
         <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
       </div>
       <div class="optional-response" id="optionalResponse2">
@@ -625,18 +641,18 @@ h1 {
         <textarea id="optionalText2" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-back" onclick="prevQuestion(2)">← Back</button>
-        <button class="btn btn-next" id="nextBtn2" onclick="nextQuestion(2)">Next →</button>
+        <button class="btn btn-back" onclick="prevQuestion(2)">â† Back</button>
+        <button class="btn btn-next" id="nextBtn2" onclick="nextQuestion(2)">Next â†’</button>
       </div>
     </div>
 
     <!-- Q4 -->
     <div class="question-card" data-q="3">
-      <div class="q-part">Part 2 · Operational Bottlenecks</div>
+      <div class="q-part">Part 2 Â· Operational Bottlenecks</div>
       <div class="q-text">How much time does your admin staff spend daily on repetitive tasks like status updates, scheduling, and data entry?</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Less than 30 minutes a day.</div></div>
-        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>1–2 hours a day.</div></div>
+        <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>1â€“2 hours a day.</div></div>
         <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>Over 90 minutes a day.<span class="option-insight">The average SMB loses 96 minutes daily to these tasks.</span></div></div>
         <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
       </div>
@@ -645,19 +661,19 @@ h1 {
         <textarea id="optionalText3" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-back" onclick="prevQuestion(3)">← Back</button>
-        <button class="btn btn-next" id="nextBtn3" onclick="nextQuestion(3)">Next →</button>
+        <button class="btn btn-back" onclick="prevQuestion(3)">â† Back</button>
+        <button class="btn btn-next" id="nextBtn3" onclick="nextQuestion(3)">Next â†’</button>
       </div>
     </div>
 
     <!-- Q5 -->
     <div class="question-card" data-q="4">
-      <div class="q-part">Part 2 · Operational Bottlenecks</div>
-      <div class="q-text">When it comes to scheduling, how would you describe your "unwritten rules" — like which provider takes emergencies or no-show buffers?</div>
+      <div class="q-part">Part 2 Â· Operational Bottlenecks</div>
+      <div class="q-text">When it comes to scheduling, how would you describe your "unwritten rules" â€” like which provider takes emergencies or no-show buffers?</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>Simple. Anyone on the team can follow them.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Documented, but they still require constant human oversight.</div></div>
-        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>It's a messy reality that only an experienced office manager truly understands.<span class="option-insight">This is where generic AI tools fail — and where operations-first consulting wins.</span></div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>It's a messy reality that only an experienced office manager truly understands.<span class="option-insight">This is where generic AI tools fail â€” and where operations-first consulting wins.</span></div></div>
         <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
       </div>
       <div class="optional-response" id="optionalResponse4">
@@ -665,19 +681,19 @@ h1 {
         <textarea id="optionalText4" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-back" onclick="prevQuestion(4)">← Back</button>
-        <button class="btn btn-next" id="nextBtn4" onclick="nextQuestion(4)">Next →</button>
+        <button class="btn btn-back" onclick="prevQuestion(4)">â† Back</button>
+        <button class="btn btn-next" id="nextBtn4" onclick="nextQuestion(4)">Next â†’</button>
       </div>
     </div>
 
     <!-- Q6 -->
     <div class="question-card" data-q="5">
-      <div class="q-part">Part 3 · The Explorer Mindset</div>
+      <div class="q-part">Part 3 Â· The Explorer Mindset</div>
       <div class="q-text">What has been your experience with tools like ChatGPT or Zapier so far?</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>We haven't tried them.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>We use them for basic tasks like writing emails or social posts.</div></div>
-        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>We tried to build something but it felt "stuck" or didn't integrate with our systems.<span class="option-insight">You're not alone — 72% of non-adopters cite lack of knowledge as the barrier.</span></div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>We tried to build something but it felt "stuck" or didn't integrate with our systems.<span class="option-insight">You're not alone â€” 72% of non-adopters cite lack of knowledge as the barrier.</span></div></div>
         <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
       </div>
       <div class="optional-response" id="optionalResponse5">
@@ -685,19 +701,19 @@ h1 {
         <textarea id="optionalText5" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-back" onclick="prevQuestion(5)">← Back</button>
-        <button class="btn btn-next" id="nextBtn5" onclick="nextQuestion(5)">Next →</button>
+        <button class="btn btn-back" onclick="prevQuestion(5)">â† Back</button>
+        <button class="btn btn-next" id="nextBtn5" onclick="nextQuestion(5)">Next â†’</button>
       </div>
     </div>
 
     <!-- Q7 -->
     <div class="question-card" data-q="6">
-      <div class="q-part">Part 3 · The Explorer Mindset</div>
+      <div class="q-part">Part 3 Â· The Explorer Mindset</div>
       <div class="q-text">What is your primary concern about implementing AI in your business?</div>
       <div class="options">
         <div class="option" data-score="a" onclick="selectOption(this)"><div class="option-letter">A</div><div>The cost of the technology.</div></div>
         <div class="option" data-score="b" onclick="selectOption(this)"><div class="option-letter">B</div><div>Security, privacy, or compliance concerns.</div></div>
-        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>A skills gap — we don't have the time or knowledge to set it up ourselves.<span class="option-insight">This is the #1 barrier for 72% of small businesses.</span></div></div>
+        <div class="option" data-score="c" onclick="selectOption(this)"><div class="option-letter">C</div><div>A skills gap â€” we don't have the time or knowledge to set it up ourselves.<span class="option-insight">This is the #1 barrier for 72% of small businesses.</span></div></div>
         <div class="option" data-score="d" onclick="selectOption(this)"><div class="option-letter">D</div><div>This doesn't apply to my current operation or workflow.</div></div>
       </div>
       <div class="optional-response" id="optionalResponse6">
@@ -705,12 +721,11 @@ h1 {
         <textarea id="optionalText6" placeholder="Optional"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-back" onclick="prevQuestion(6)">← Back</button>
-        <button class="btn btn-next" id="nextBtn6" onclick="showEmailGate()">See My Results →</button>
+        <button class="btn btn-back" onclick="prevQuestion(6)">â† Back</button>
+        <button class="btn btn-next" id="nextBtn6" onclick="showEmailGate()">See My Results â†’</button>
       </div>
     </div>
   </div>
-
 
   <!-- Email Gate -->
   <div id="emailGate">
@@ -721,10 +736,11 @@ h1 {
       <input class="gate-input" type="email" id="gateEmail" placeholder="your@email.com" autocomplete="email" />
       <input class="gate-input" type="text" id="gateName" placeholder="First name (optional)" autocomplete="given-name" />
     </div>
-    <button class="gate-submit" onclick="submitEmail()">Get my results &rarr;</button>
+    <button class="gate-submit" onclick="submitEmail()">Get my results â†’</button>
     <p class="gate-reassurance">No spam. One email with your report.</p>
     <button class="gate-skip" onclick="skipEmail()">Skip, just show my results</button>
   </div>
+
   <!-- Results -->
   <div id="results">
     <div id="resultBadge" class="result-badge"></div>
@@ -746,15 +762,21 @@ h1 {
       <h3 id="resultNextTitle"></h3>
       <p id="resultNextDesc"></p>
       <ul id="resultNextList"></ul>
-      <a class="cta-btn" href="https://quietdissent.com/#contact" target="_blank" rel="noopener noreferrer">Schedule Your Assessment →</a>
+      <a class="cta-btn" href="https://quietdissent.com/#contact" target="_blank" rel="noopener noreferrer">Schedule Your Assessment â†’</a>
     </div>
 
-    <div class="retake"><a onclick="resetQuiz()">↻ Retake the quiz</a></div>
+    <div class="retake"><a onclick="resetQuiz()">â†» Retake the quiz</a></div>
   </div>
 
 </div>
 
 <script>
+// â”€â”€â”€ Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+const SUPABASE_URL = 'https://qifpdpippnytijfzjdsp.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_tlBptRX48BfeyX17B62EZg_ZePfCxfl';
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
 const answers = [null, null, null, null, null, null, null];
 const optionalNotes = ['', '', '', '', '', '', ''];
 const total = 7;
@@ -779,7 +801,6 @@ function selectOption(el) {
 
 function nextQuestion(current) {
   if (!answers[current]) return;
-
   const cards = document.querySelectorAll('.question-card');
   cards[current].classList.remove('active');
   cards[current + 1].classList.add('active');
@@ -804,20 +825,13 @@ function updateProgress(qNum) {
 function restoreOptionalField(qIndex) {
   const wrap = document.getElementById('optionalResponse' + qIndex);
   const text = document.getElementById('optionalText' + qIndex);
-
   if (answers[qIndex] === 'd') {
     wrap.classList.add('active');
   } else {
     wrap.classList.remove('active');
   }
-
-  if (text) {
-    text.value = optionalNotes[qIndex] || '';
-  }
+  if (text) text.value = optionalNotes[qIndex] || '';
 }
-
-const SUPABASE_URL = 'https://qifpdpippnytijfzjdsp.supabase.co';
-const SUPABASE_ANON_KEY = 'PASTE_YOUR_KEY_HERE';
 
 function showEmailGate() {
   if (!answers[6]) return;
@@ -830,35 +844,37 @@ function submitEmail() {
   const email = document.getElementById('gateEmail').value.trim();
   const name = document.getElementById('gateName').value.trim();
   const emailInput = document.getElementById('gateEmail');
+
   if (!email || !email.includes('@')) {
     emailInput.style.borderColor = 'var(--red-soft)';
     emailInput.focus();
     return;
   }
+
+  // Show results immediately â€” don't make them wait on the network
   renderResults();
-  const notes = optionalNotes.map((note, i) => note ? 'Q' + (i + 1) + ': ' + note : null).filter(Boolean).join(' | ');
+
+  // Collect optional notes for submission
+  const notes = optionalNotes.map((note, i) => note ? `Q${i + 1}: ${note}` : null).filter(Boolean).join(' | ');
   const counts = computeCounts();
   const profile = computeProfile(counts);
+
+  // Fire and forget â€” silent fail is fine, results are already showing
   fetch(SUPABASE_URL + '/rest/v1/quiz_leads', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_ANON_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-      'Prefer': 'return=minimal'
-    },
+    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Prefer': 'return=minimal' },
     body: JSON.stringify({
-      email: email,
-      name: name || null,
+      email,
+      name: name || '(not provided)',
       profile: profile.badge,
       score_a: counts.a,
       score_b: counts.b,
       score_c: counts.c,
       estimated_leak: profile.leak,
       answers: answers.join(', '),
-      notes: notes || null
+      notes: notes || '(none)'
     })
-  }).catch(function() {});
+  }).catch(() => {});
 }
 
 function skipEmail() {
@@ -867,38 +883,92 @@ function skipEmail() {
 
 function computeCounts() {
   const counts = { a: 0, b: 0, c: 0 };
-  answers.forEach(function(a) {
+  answers.forEach(a => {
     if (a === 'a' || a === 'b' || a === 'c') counts[a]++;
   });
   return counts;
 }
 
 function computeProfile(counts) {
-function showResults_unused() {}
+  if (counts.a >= counts.b && counts.a >= counts.c) {
+    return {
+      badge: 'Efficient Operator',
+      badgeClass: 'efficient',
+      title: "You're Running a Tight Ship.",
+      desc: "Your systems are solid. You answer calls, respond to leads quickly, and have processes that work. AI for you isn't about fixing what's broken â€” it's about fine-tuning what already works and finding incremental gains in profitability. The question is whether there's a next level you haven't seen yet.",
+      leak: '$500 â€“ $2,000',
+      nextTitle: 'Your opportunity is optimization.',
+      nextDesc: 'Even efficient operations have blind spots. Our assessment finds the 5-10% gains that compound into real margin.',
+      nextItems: [
+        "Identify automation opportunities your team hasn't considered",
+        'Benchmark your response times against conversion data',
+        'Find the "last mile" efficiency gains that add up'
+      ]
+    };
+  } else if (counts.c >= counts.b) {
+    return {
+      badge: 'High-Leak Zone',
+      badgeClass: 'leak',
+      title: "You're Losing More Than You Think.",
+      desc: "Your business is likely in the group losing $120,000+ annually to missed calls and slow lead responses. The good news: this is the most fixable problem in your business. A single missed lead costs an average of $1,200 in home services â€” and right now, most of those leads are calling your competitors instead.",
+      leak: '$5,000 â€“ $10,000+',
+      nextTitle: 'You need a done-for-you implementation.',
+      nextDesc: "You don't need more software to learn. You need someone who understands your operations to build the system for you.",
+      nextItems: [
+        'Map your exact revenue leak with real call data',
+        'Quantify your specific after-hours and missed-call losses',
+        'Identify the highest-ROI quick win â€” usually live within 2 weeks',
+        'Get a system that pays for itself in the first month'
+      ]
+    };
+  } else {
+    return {
+      badge: 'Stuck Explorer',
+      badgeClass: 'stuck',
+      title: "You Know AI Matters. You Just Haven't Found the Path.",
+      desc: "You're in the majority â€” 51% of small businesses are in exactly this position. You've tried a tool or two, maybe ChatGPT for emails, maybe looked at automation. But nothing is connected, nothing is consistent, and nobody is steering the strategy. The problem isn't the technology. It's that nobody has shown you the full picture.",
+      leak: '$2,000 â€“ $5,000',
+      nextTitle: 'You need a strategy before another tool.',
+      nextDesc: 'The $500 Diagnostic Assessment is designed specifically for businesses in your position.',
+      nextItems: [
+        'Map the "unwritten rules" a generic bot would miss',
+        'Quantify your specific revenue leak â€” not industry averages',
+        'Identify one quick-win project to show ROI within weeks',
+        'Get a roadmap that connects your tools into a system'
+      ]
+    };
+  }
+}
 
 function renderResults() {
   document.getElementById('emailGate').classList.remove('active');
   document.getElementById('quiz').style.display = 'none';
+
   const counts = computeCounts();
   const profile = computeProfile(counts);
+
   const resultsEl = document.getElementById('results');
   resultsEl.classList.add('active');
+
   const badgeEl = document.getElementById('resultBadge');
   badgeEl.textContent = profile.badge;
   badgeEl.className = 'result-badge ' + profile.badgeClass;
+
   document.getElementById('resultTitle').textContent = profile.title;
   document.getElementById('resultDesc').textContent = profile.desc;
-  document.getElementById('resultScore').textContent = counts.a + ' A  .  ' + counts.b + ' B  .  ' + counts.c + ' C';
+  document.getElementById('resultScore').textContent = counts.a + ' A  Â·  ' + counts.b + ' B  Â·  ' + counts.c + ' C';
   document.getElementById('resultLeak').textContent = profile.leak;
   document.getElementById('resultNextTitle').textContent = profile.nextTitle;
   document.getElementById('resultNextDesc').textContent = profile.nextDesc;
+
   const list = document.getElementById('resultNextList');
   list.innerHTML = '';
-  profile.nextItems.forEach(function(item) {
+  profile.nextItems.forEach(item => {
     const li = document.createElement('li');
     li.textContent = item;
     list.appendChild(li);
   });
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -908,8 +978,6 @@ function resetQuiz() {
 
   document.getElementById('results').classList.remove('active');
   document.getElementById('emailGate').classList.remove('active');
-  document.getElementById('gateEmail').value = '';
-  document.getElementById('gateName').value = '';
   document.getElementById('quiz').style.display = 'block';
 
   document.querySelectorAll('.question-card').forEach((c, i) => {
@@ -920,8 +988,12 @@ function resetQuiz() {
   document.querySelectorAll('.btn-next').forEach(b => b.classList.remove('enabled'));
   document.querySelectorAll('.optional-response').forEach(w => w.classList.remove('active'));
   document.querySelectorAll('.optional-response textarea').forEach(t => t.value = '');
+  document.getElementById('gateEmail').value = '';
+  document.getElementById('gateName').value = '';
+  document.getElementById('gateEmail').style.borderColor = '';
 
   updateProgress(1);
+  document.getElementById('progressFill').style.width = '0%';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
