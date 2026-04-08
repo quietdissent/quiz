@@ -1,0 +1,150 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&amp;family=DM+Mono:wght@400;500&amp;display=swap');
+    </style>
+    <radialGradient id="iconGlow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#5F8575" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#5F8575" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="iconClip">
+      <rect width="512" height="512" rx="80"/>
+    </clipPath>
+  </defs>
+
+  <!-- Icon background with rounded corners -->
+  <rect width="512" height="512" rx="80" fill="#111111"/>
+  <rect width="512" height="512" rx="80" fill="url(#iconGlow)"/>
+  <rect width="512" height="512" rx="80" fill="url(#centerGlow)"/>
+
+  <!-- Subtle inner background texture: very faint grid -->
+  <g clip-path="url(#iconClip)" stroke="#FFFFF0" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="128" x2="512" y2="128"/>
+    <line x1="0" y1="256" x2="512" y2="256"/>
+    <line x1="0" y1="384" x2="512" y2="384"/>
+    <line x1="128" y1="0" x2="128" y2="512"/>
+    <line x1="256" y1="0" x2="256" y2="512"/>
+    <line x1="384" y1="0" x2="384" y2="512"/>
+  </g>
+
+  <!-- ─── GAUGE ARC ─────────────────────────────────────────────────────── -->
+  <!-- Arc centered at (256,256), radius 185, gap at bottom (90° in SVG = downward) -->
+  <!-- Arc from 120° to 60° clockwise (300° total arc, large-arc=1, sweep=1) -->
+  <!-- Start: (163.5, 416.2)  End: (348.5, 416.2) -->
+
+  <!-- Outer arc — main track -->
+  <path d="M 163.5 416.2 A 185 185 0 1 1 348.5 416.2"
+        fill="none"
+        stroke="#5F8575"
+        stroke-width="3"
+        stroke-opacity="0.9"
+        stroke-linecap="round"/>
+
+  <!-- Inner arc — depth ring -->
+  <!-- radius 165: start(173.5, 398.9) end(338.5, 398.9) -->
+  <path d="M 173.5 398.9 A 165 165 0 1 1 338.5 398.9"
+        fill="none"
+        stroke="#5F8575"
+        stroke-width="1"
+        stroke-opacity="0.25"
+        stroke-linecap="round"/>
+
+  <!-- ─── TICK MARKS ──────────────────────────────────────────────────── -->
+  <!-- Every 30° along the arc. Minor ticks r=167, major ticks r=152 -->
+  <!-- Computed positions for outer(r=185) → inner: -->
+  <g stroke="#5F8575" stroke-linecap="round">
+
+    <!-- θ=120° (start point) minor tick -->
+    <line x1="163.5" y1="416.2" x2="172.5" y2="400.6" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=150° minor -->
+    <line x1="95.8" y1="348.5" x2="111.4" y2="339.5" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=180° MAJOR — 9 o'clock -->
+    <line x1="71" y1="256" x2="104" y2="256" stroke-width="2.5" stroke-opacity="0.95"/>
+    <!-- θ=210° minor -->
+    <line x1="95.8" y1="163.5" x2="111.4" y2="172.5" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=240° minor -->
+    <line x1="163.5" y1="95.8" x2="172.5" y2="111.4" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=270° MAJOR — 12 o'clock -->
+    <line x1="256" y1="71" x2="256" y2="104" stroke-width="2.5" stroke-opacity="0.95"/>
+    <!-- θ=300° minor -->
+    <line x1="348.5" y1="95.8" x2="339.5" y2="111.4" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=330° minor -->
+    <line x1="416.2" y1="163.5" x2="400.6" y2="172.5" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=0° MAJOR — 3 o'clock -->
+    <line x1="441" y1="256" x2="408" y2="256" stroke-width="2.5" stroke-opacity="0.95"/>
+    <!-- θ=30° minor -->
+    <line x1="416.2" y1="348.5" x2="400.6" y2="339.5" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- θ=60° (end point) minor -->
+    <line x1="348.5" y1="416.2" x2="339.5" y2="400.6" stroke-width="2" stroke-opacity="0.7"/>
+
+    <!-- Sub-ticks: additional 15° marks (halfway between major/minor) — smaller -->
+    <!-- θ=135°: cos=-0.7071, sin=0.7071 → outer:(256-130.8, 256+130.8)=(125.2, 386.8) inner r=174: (256-123, 256+123)=(133, 379) -->
+    <line x1="125.2" y1="386.8" x2="132" y2="379.6" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=165°: cos=-0.9659, sin=0.2588 → outer:(256-178.7, 256+47.9)=(77.3, 303.9), inner r=174:(256-168, 256+45)=(88,301) -->
+    <line x1="77.3" y1="303.9" x2="88.1" y2="301.1" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=195°: cos=-0.9659, sin=-0.2588 → outer:(77.3, 208.1), inner:(88.1, 210.9) -->
+    <line x1="77.3" y1="208.1" x2="88.1" y2="210.9" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=225°: cos=-0.7071, sin=-0.7071 → outer:(125.2, 125.2), inner:(133, 132) -->
+    <line x1="125.2" y1="125.2" x2="132" y2="132.4" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=255°: cos=-0.2588, sin=-0.9659 → outer:(256-47.9, 256-178.7)=(208.1, 77.3), inner:(256-45, 256-168)=(211, 88) -->
+    <line x1="208.1" y1="77.3" x2="210.9" y2="88.1" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=285°: cos=0.2588, sin=-0.9659 → outer:(256+47.9, 77.3)=(303.9, 77.3), inner:(301.1, 88.1) -->
+    <line x1="303.9" y1="77.3" x2="301.1" y2="88.1" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=315°: cos=0.7071, sin=-0.7071 → outer:(386.8, 125.2), inner:(379, 132) -->
+    <line x1="386.8" y1="125.2" x2="379.6" y2="132" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=345°: cos=0.9659, sin=-0.2588 → outer:(434.7, 208.1), inner:(423.9, 210.9) -->
+    <line x1="434.7" y1="208.1" x2="423.9" y2="210.9" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=15°: cos=0.9659, sin=0.2588 → outer:(434.7, 303.9), inner:(423.9, 301.1) -->
+    <line x1="434.7" y1="303.9" x2="423.9" y2="301.1" stroke-width="1.5" stroke-opacity="0.4"/>
+    <!-- θ=45°: cos=0.7071, sin=0.7071 → outer:(386.8, 386.8), inner:(379, 379) -->
+    <line x1="386.8" y1="386.8" x2="379.6" y2="379.6" stroke-width="1.5" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- ─── NEEDLE ─────────────────────────────────────────────────────── -->
+  <!-- Pointing to ~315° (upper-right, suggesting a high-performance reading) -->
+  <!-- θ=315°: cos=0.7071, sin=-0.7071 -->
+  <!-- Tip at r=170: (256+120.2, 256-120.2) = (376.2, 135.8) -->
+  <!-- Tail at r=-22: (256-15.6, 256+15.6) = (240.4, 271.6) -->
+
+  <!-- Needle glow -->
+  <line x1="240.4" y1="271.6" x2="376.2" y2="135.8"
+        stroke="#b35a44"
+        stroke-width="6"
+        stroke-opacity="0.2"
+        stroke-linecap="round"/>
+
+  <!-- Needle body -->
+  <polygon points="376.2,135.8 244.7,272.9 239.1,267.3"
+           fill="#b35a44"
+           fill-opacity="0.95"/>
+
+  <!-- Pivot circle -->
+  <circle cx="256" cy="256" r="10" fill="#111111" stroke="#5F8575" stroke-width="2.5"/>
+  <circle cx="256" cy="256" r="4.5" fill="#5F8575"/>
+
+  <!-- ─── Q LETTERFORM ─────────────────────────────────────────────── -->
+  <!-- Dominant Fraunces Q, ivory, centered -->
+  <text x="256" y="312"
+        font-family="'Fraunces', 'Georgia', serif"
+        font-size="200"
+        font-weight="300"
+        text-anchor="middle"
+        fill="#FFFFF0"
+        fill-opacity="0.92">Q</text>
+
+  <!-- ─── LABEL ───────────────────────────────────────────────────── -->
+  <!-- "QD" label in the gap at bottom, between arc endpoints -->
+  <text x="256" y="462"
+        font-family="'DM Mono', 'Courier New', monospace"
+        font-size="19"
+        font-weight="500"
+        text-anchor="middle"
+        letter-spacing="5"
+        fill="#5F8575"
+        fill-opacity="0.85">QD</text>
+
+</svg>

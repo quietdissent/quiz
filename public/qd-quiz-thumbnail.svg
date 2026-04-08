@@ -1,0 +1,194 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&amp;family=DM+Sans:wght@400;500&amp;family=DM+Mono:wght@400;500&amp;display=swap');
+    </style>
+    <radialGradient id="bgGlow" cx="18%" cy="85%" r="65%">
+      <stop offset="0%" stop-color="#5F8575" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="arcGlow" cx="100%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#5F8575" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="subtleBlur">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1200" height="630" fill="#111111"/>
+  <!-- Warm glow from bottom-left -->
+  <rect width="1200" height="630" fill="url(#bgGlow)"/>
+  <!-- Cold arc glow from top-right -->
+  <rect width="1200" height="630" fill="url(#arcGlow)"/>
+
+  <!-- Subtle grid — very faint -->
+  <g stroke="#FFFFF0" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
+  </g>
+
+  <!-- Right-side decorative: concentric arcs centered at top-right corner (1200, 0) -->
+  <g fill="none" stroke="#5F8575">
+    <path d="M 1200 0 A 280 280 0 0 0 920 280" stroke-opacity="0.10" stroke-width="1"/>
+    <path d="M 1200 0 A 380 380 0 0 0 820 380" stroke-opacity="0.14" stroke-width="1"/>
+    <path d="M 1200 0 A 480 480 0 0 0 720 480" stroke-opacity="0.10" stroke-width="1"/>
+    <path d="M 1200 0 A 580 580 0 0 0 620 580" stroke-opacity="0.07" stroke-width="1"/>
+    <!-- Hero arc, slightly thicker -->
+    <path d="M 1200 0 A 430 430 0 0 0 770 430" stroke-opacity="0.45" stroke-width="1.5"/>
+  </g>
+
+  <!-- Tick marks along the hero arc (radius 430 from 1200,0) — evenly spaced along arc -->
+  <!-- Arc spans from (770, 430) to (1200, 0): roughly 90° quadrant -->
+  <!-- Tick at ~15°: angle from corner measured from x-axis going left: -->
+  <!-- Points at 15° from vertical: need angle from (1200,0) -->
+  <!-- Manual ticks: points on arc r=430, center=(1200,0) at angles 180°+15°, 180°+30°... from standard -->
+  <!-- angle from positive x: arc goes from 270° (straight down) to 180° (straight left) -->
+  <!-- tick at 255° (15° from down): x=1200+430*cos(255°), y=0+430*sin(255°) = 1200-111.2, 430*(-0.966) = 1088.8, -415 (out of canvas) -->
+  <!-- Let me use angle from the top-right corner going inward -->
+  <!-- The arc from (1200,0) at radius 430: endpoint at angle 180° is (770, 0), at 270° is (1200, 430) -->
+  <!-- Our arc endpoint (770, 430) is at angle 225° from the corner -->
+  <!-- So arc spans 180° to 270° — exactly 90° quarter circle centered at (1200, 0) -->
+  <!-- Ticks at 185°, 195°, 207°, 218°, 230°, 242°, 253°, 265° -->
+  <g stroke="#5F8575" stroke-opacity="0.5" stroke-width="1">
+    <!-- 188°: x=1200+430*cos(188°)=1200+430*(-0.990)=1200-425.7=774.3, y=430*sin(188°)=430*(-0.139)=-59.8 (off) -->
+    <!-- Let me try angles from ~200° to ~268° to stay on visible canvas -->
+    <!-- 200°: x=1200+430*cos(200°)=1200+430*(-0.940)=1200-404=796, y=430*sin(200°)=430*(-0.342)=-147 (off) -->
+    <!-- 225°: x=1200+430*cos(225°)=1200+430*(-0.707)=1200-304=896, y=430*sin(225°)=430*(−0.707)=−304 (off) -->
+    <!-- The arc endpoint is at (770, 430) which means: dx=-430, dy=430 from (1200,0) → angle=atan2(430,-430)=135° -->
+    <!-- So the arc is from 135° (endpoint 770,430) curving... wait let me re-examine. -->
+    <!-- From center (1200,0), point (770,430): dx=770-1200=-430, dy=430-0=430 → angle=atan2(430,-430)=135° from positive x = upper-left quadrant in standard, but SVG y-down so it's lower-left -->
+    <!-- And (820,380): dx=-380, dy=380 → also 135° -->
+    <!-- The arcs all end at 135° angle from corner (1200,0) since dy/dx=-1 always -->
+    <!-- So these are just straight diagonal lines... they're quarter-circle arcs from 0° (right, but corner is at right edge) -->
+    <!-- From (1200,0): straight down is at 90°, straight left is at 180° -->
+    <!-- (770,430): that's down-left at 135° from standard east, but in SVG (y-down): angle = atan2(430, -430) which in SVG = 135° from east = southwest direction -->
+    <!-- The arc from (820,380) to (1200,0) at radius... let me check: sqrt((1200-820)²+(0-380)²)=sqrt(380²+380²)=380*sqrt(2)=537.4 ≠ 380 -->
+    <!-- I had these arcs wrong. Let me check the first arc: "M 1200 0 A 280 280 0 0 0 920 280" -->
+    <!-- Center at (1200,0), r=280: endpoint (920,280). Distance=sqrt(280²+280²)=280√2≈396 ≠ 280. These aren't quarter circle arcs from corner! -->
+    <!-- The SVG arc is drawn differently - the center of the arc is NOT at (1200,0). The arc goes FROM (1200,0) TO (920,280) with radius 280. -->
+    <!-- The actual arc center would be somewhere in between. This makes a beautiful concentric look. -->
+    <!-- So adding tick marks here is complex. Let me skip the ticks or just add simple small dashes. -->
+
+    <!-- Simple approach: dots along a diagonal line from corner -->
+    <circle cx="1088" cy="112" r="2" fill="#5F8575" fill-opacity="0.4" stroke="none"/>
+    <circle cx="976" cy="224" r="2" fill="#5F8575" fill-opacity="0.4" stroke="none"/>
+    <circle cx="864" cy="336" r="2" fill="#5F8575" fill-opacity="0.4" stroke="none"/>
+    <circle cx="952" cy="168" r="1.5" fill="#5F8575" fill-opacity="0.3" stroke="none"/>
+    <circle cx="840" cy="280" r="1.5" fill="#5F8575" fill-opacity="0.3" stroke="none"/>
+  </g>
+
+  <!-- Left vertical accent bar -->
+  <rect x="60" y="60" width="2.5" height="515" fill="#5F8575" opacity="0.85"/>
+
+  <!-- Top label: OPERATIONS DIAGNOSTIC -->
+  <text x="83" y="99"
+        font-family="'DM Mono', 'Courier New', monospace"
+        font-size="12"
+        letter-spacing="4"
+        fill="#5F8575"
+        font-weight="500">OPERATIONS DIAGNOSTIC</text>
+
+  <!-- 7 QUESTIONS pill/tag -->
+  <rect x="83" y="111" width="126" height="26" rx="3" fill="none" stroke="#5F8575" stroke-width="1" stroke-opacity="0.45"/>
+  <rect x="83" y="111" width="126" height="26" rx="3" fill="#5F8575" fill-opacity="0.1"/>
+  <text x="96" y="128"
+        font-family="'DM Mono', 'Courier New', monospace"
+        font-size="11"
+        letter-spacing="2"
+        fill="#5F8575">7 QUESTIONS</text>
+
+  <!-- Main quiz title in Fraunces — 3 lines -->
+  <text x="83" y="234"
+        font-family="'Fraunces', 'Georgia', serif"
+        font-size="78"
+        font-weight="300"
+        fill="#FFFFF0">What's Getting</text>
+  <text x="83" y="321"
+        font-family="'Fraunces', 'Georgia', serif"
+        font-size="78"
+        font-weight="300"
+        font-style="italic"
+        fill="#FFFFF0">in the Way of</text>
+  <text x="83" y="408"
+        font-family="'Fraunces', 'Georgia', serif"
+        font-size="78"
+        font-weight="300"
+        fill="#FFFFF0">Smarter Operations?</text>
+
+  <!-- Profile result tags — three outcomes -->
+  <!-- Efficient Operator (green — positive) -->
+  <rect x="83" y="440" width="215" height="38" rx="3" fill="#5F8575" fill-opacity="0.2" stroke="#5F8575" stroke-width="1"/>
+  <circle cx="100" cy="459" r="5.5" fill="#5F8575"/>
+  <text x="115" y="464"
+        font-family="'DM Sans', 'Arial', sans-serif"
+        font-size="13.5"
+        fill="#FFFFF0"
+        fill-opacity="0.92">Efficient Operator</text>
+
+  <!-- Stuck Explorer (muted) -->
+  <rect x="308" y="440" width="180" height="38" rx="3" fill="#FFFFF0" fill-opacity="0.04" stroke="#FFFFF0" stroke-width="1" stroke-opacity="0.18"/>
+  <circle cx="325" cy="459" r="5.5" fill="#b35a44" fill-opacity="0.75"/>
+  <text x="340" y="464"
+        font-family="'DM Sans', 'Arial', sans-serif"
+        font-size="13.5"
+        fill="#FFFFF0"
+        fill-opacity="0.62">Stuck Explorer</text>
+
+  <!-- High-Leak Zone (terracotta) -->
+  <rect x="498" y="440" width="178" height="38" rx="3" fill="#FFFFF0" fill-opacity="0.04" stroke="#FFFFF0" stroke-width="1" stroke-opacity="0.18"/>
+  <circle cx="515" cy="459" r="5.5" fill="#b35a44"/>
+  <text x="530" y="464"
+        font-family="'DM Sans', 'Arial', sans-serif"
+        font-size="13.5"
+        fill="#FFFFF0"
+        fill-opacity="0.62">High-Leak Zone</text>
+
+  <!-- Horizontal rule -->
+  <line x1="60" y1="546" x2="1140" y2="546" stroke="#FFFFF0" stroke-opacity="0.1" stroke-width="1"/>
+
+  <!-- Bottom: URL + CTA -->
+  <text x="83" y="579"
+        font-family="'DM Mono', 'Courier New', monospace"
+        font-size="14"
+        fill="#5F8575"
+        letter-spacing="1">qd-quiz.vercel.app</text>
+
+  <text x="282" y="579"
+        font-family="'DM Mono', 'Courier New', monospace"
+        font-size="14"
+        fill="#FFFFF0"
+        fill-opacity="0.28"
+        letter-spacing="1">·</text>
+
+  <text x="300" y="579"
+        font-family="'DM Mono', 'Courier New', monospace"
+        font-size="14"
+        fill="#FFFFF0"
+        fill-opacity="0.46"
+        letter-spacing="0.5">Find your operations profile  →</text>
+
+  <!-- QD brandmark — top right -->
+  <text x="1140" y="99"
+        font-family="'Fraunces', 'Georgia', serif"
+        font-size="20"
+        fill="#FFFFF0"
+        fill-opacity="0.28"
+        text-anchor="middle"
+        letter-spacing="2">QD</text>
+
+  <!-- Subtle bottom-right diagnostic data decoration -->
+  <g font-family="'DM Mono', 'Courier New', monospace" font-size="10" fill="#5F8575" fill-opacity="0.25" letter-spacing="1">
+    <text x="900" y="579">NON-CONSENSUS DECISIONS.</text>
+    <text x="1060" y="579" fill="#5F8575" fill-opacity="0.18">MEASURABLE OUTCOMES.</text>
+  </g>
+
+</svg>
